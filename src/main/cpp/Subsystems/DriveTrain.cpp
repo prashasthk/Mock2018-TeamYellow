@@ -11,9 +11,9 @@
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(2)), right(new TalonSRX(3)), gyro(new ADXRS450_Gyro())
  {
-left->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative,0,10);
+left->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute,0,10);
 left->SetSelectedSensorPosition(0,0,10);
-right->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative,0,10);
+right->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute,0,10);
 right->SetSelectedSensorPosition(0,0,10);
 gyro->Reset();
 }
@@ -35,12 +35,12 @@ void DriveTrain::resetEncoders() {
   right->SetSelectedSensorPosition(0,0,10);
 }
 double DriveTrain::getLeftDistance() {
-  double relativePosition = left->GetSensorCollection().GetQuadraturePosition();
-  return relativePosition;
+  double absolutePosition = left->GetSensorCollection().GetQuadraturePosition();
+  return absolutePosition;
 }
 double DriveTrain::getRightDistance() {
-  double relativePosition = -(right->GetSensorCollection().GetQuadraturePosition());
-  return relativePosition;
+  double absolutePosition = -(right->GetSensorCollection().GetQuadraturePosition());
+  return absolutePosition;
 } 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
