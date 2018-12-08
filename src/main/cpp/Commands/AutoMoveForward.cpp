@@ -24,7 +24,7 @@ drivingPID->SetSetPoint(target);
 // Called repeatedly when this Command is scheduled to run
 void AutoMoveForward::Execute() {
 power = drivingPID->Tick((Robot::m_drive->getLeftDistance() + Robot::m_drive->getRightDistance())/2);
-Robot::m_drive->tankDrive(0.10 + power, 0.10 + power);
+Robot::m_drive->tankDrive(0 -power, 0 -power);
 }
 // Make this return true when this Command no longer needs to run execute()
 bool AutoMoveForward::IsFinished() { 

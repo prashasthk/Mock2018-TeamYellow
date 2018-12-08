@@ -27,10 +27,10 @@ anglePID->SetSetPoint(setpoint);
 void AutoTurn::Execute() {
 power = anglePID->Tick((Robot::m_drive->getLeftDistance() + Robot::m_drive->getRightDistance())/2);
 if (setpoint > 0) {
-		Robot::m_drive->tankDrive(0.15 + power, -0.15 - power);
+		Robot::m_drive->tankDrive(0 - power, 0 + power);
 	}
 	else {
-		Robot::m_drive->tankDrive(-0.15 - power, 0.15 + power);
+		Robot::m_drive->tankDrive(0 - power, 0 + power);
 	}
 }
 // Make this return true when this Command no longer needs to run execute()

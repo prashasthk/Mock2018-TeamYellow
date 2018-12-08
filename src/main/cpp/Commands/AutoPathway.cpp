@@ -17,6 +17,7 @@ AutoPathway::AutoPathway() {
   AddSequential(new AutoTurn(90));
   AddSequential()
   AddParallel(new AutoMoveForward(20));
+  
   // e.g. AddSequential(new Command1());
   //      AddSequential(new Command2());
   // these will run in order.
