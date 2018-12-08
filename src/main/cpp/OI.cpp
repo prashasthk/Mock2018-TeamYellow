@@ -10,8 +10,10 @@
 #include <WPILib.h>
 
 OI::OI() : leftJoy(new Joystick(0)), rightJoy(new Joystick(1)){
+  startAutoButton(new JoystickButton(leftJoy, 7)
   // Process operator interface input here.
 }
+startAutoButton->WhenPressed(new AutoPathway());
 
 Joystick* OI::getLeft(){
   return leftJoy;
