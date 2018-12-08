@@ -14,7 +14,7 @@
 class AutoMoveForward : public frc::Command {
  private:
  double target;
- double distKp = 0.1;
+ double distKp = 0.05;
  double distKi = 0;
  double distKd = 0;
  double power = 0;

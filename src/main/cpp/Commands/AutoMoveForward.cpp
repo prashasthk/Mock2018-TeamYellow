@@ -28,7 +28,7 @@ Robot::m_drive->tankDrive(0 -power, 0 -power);
 }
 // Make this return true when this Command no longer needs to run execute()
 bool AutoMoveForward::IsFinished() { 
-if (fabs(drivingPID->GetError()) < 0.05) {
+if (fabs(drivingPID->GetError()) < 0.03) {
   return true;
 }
 else return false;

@@ -35,7 +35,7 @@ if (setpoint > 0) {
 }
 // Make this return true when this Command no longer needs to run execute()
 bool AutoTurn::IsFinished() { 
-if (fabs(anglePID->GetError()) < 0.05) {
+if (fabs(anglePID->GetError()) < 0.03) {
   return true;
 }
 else return false;
