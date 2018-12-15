@@ -6,6 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Commands/AutoTurn.h"
+#include "iostream"
+using namespace std;
 
 AutoTurn::AutoTurn(double angleInput):
 anglePID(new WVPIDController(angleKp, angleKi, angleKd, setpoint, false)) {
@@ -19,31 +21,34 @@ anglePID(new WVPIDController(angleKp, angleKi, angleKd, setpoint, false)) {
 
 // Called just before this Command runs the first time
 void AutoTurn::Initialize() {
-Robot::m_drive->resetEncoders();
 Robot::m_drive->gyroReset();
 anglePID->SetSetPoint(setpoint);
 }
 // Called repeatedly when this Command is scheduled to run
 void AutoTurn::Execute() {
-power = anglePID->Tick((Robot::m_drive->getLeftDistance() + Robot::m_drive->getRightDistance())/2);
-if (setpoint > 0) {
-		Robot::m_drive->tankDrive(0 - power, 0 + power);
-	}
-	else {
-		Robot::m_drive->tankDrive(0 - power, 0 + power);
-	}
+	double angle = Robot::m_drive->getAngle();
+	cout<< "Angle: " << angle << endl;
+	power = 0.2 * anglePID->Tick(angle);
+		if (setpoint < 0) {
+			Robot::m_drive->tankDrive(0.2 + power, -0.2 - power);
+		}
+		else {
+			Robot::m_drive->tankDrive(-0.2 - power, 0.2 + power);
+		}
 }
 // Make this return true when this Command no longer needs to run execute()
 bool AutoTurn::IsFinished() { 
-if (fabs(anglePID->GetError()) < 0.03) {
-  return true;
-}
-else return false;
+	if (fabs(anglePID->GetError()) < 1) {
+  		return true;
+	}
+	else { 
+		return false;
+	}
 }
 
 // Called once after isFinished returns true
 void AutoTurn::End() {
-Robot::m_drive->tankDrive(0,0);
+	Robot::m_drive->tankDrive(0,0);
 }
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run

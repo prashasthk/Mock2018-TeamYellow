@@ -13,14 +13,17 @@
 #include "../Robot.h"
 class AutoMoveForward : public frc::Command {
  private:
- double target;
- double distKp = 0.05;
+ double targetL;
+ double targetR;
+ double distInitL = 0;
+ double distInitR = 0;
+ double distKp = 0.075;
  double distKi = 0;
  double distKd = 0;
  double power = 0;
 
- WVPIDController * drivingPID;
-
+ WVPIDController * drivingPIDL;
+ WVPIDController * drivingPIDR;
  public:
   AutoMoveForward(double setpoint);
   void Initialize() override;

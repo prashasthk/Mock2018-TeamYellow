@@ -6,7 +6,10 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Commands/TankDrive.h"
+#include "NetworkTablesInterface.h"
 #include "Robot.h"
+#include "iostream"
+using namespace std;
 
 TankDrive::TankDrive() {
   // Use Requires() here to declare subsystem dependencies
@@ -21,6 +24,7 @@ void TankDrive::Initialize() {}
 void TankDrive::Execute() {
   double leftVal = Robot::m_oi->getLeft()->GetY();
   double rightVal = Robot::m_oi->getRight()->GetY();
+  // cout << NetworkTablesInterface::crossFound() << endl;
   Robot::m_drive->tankDrive(leftVal, rightVal);
 }
 

@@ -5,7 +5,9 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "AutoPathway.h"
+#include "Commands/AutoPathway.h"
+#include "Commands/AutoMoveForward.h"
+#include "Commands/AutoTurn.h"
 
 AutoPathway::AutoPathway() {
   // Add Commands here:
@@ -15,7 +17,6 @@ AutoPathway::AutoPathway() {
   AddSequential(new AutoTurn(90));
   AddSequential(new AutoMoveForward(7));
   AddSequential(new AutoTurn(90));
-  AddSequential()
   AddParallel(new AutoMoveForward(20));
   
   // e.g. AddSequential(new Command1());

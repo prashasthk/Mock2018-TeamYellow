@@ -8,12 +8,12 @@
 #include "OI.h"
 
 #include <WPILib.h>
+#include "Commands/AutoMoveForward.h"
 
-OI::OI() : leftJoy(new Joystick(0)), rightJoy(new Joystick(1)){
-  startAutoButton(new JoystickButton(leftJoy, 7)
+OI::OI() : leftJoy(new Joystick(0)), rightJoy(new Joystick(1)), test(new JoystickButton(rightJoy, 7)){
   // Process operator interface input here.
+  // test->WhenPressed(new AutoMoveForward(10));
 }
-startAutoButton->WhenPressed(new AutoPathway());
 
 Joystick* OI::getLeft(){
   return leftJoy;

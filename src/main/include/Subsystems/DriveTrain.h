@@ -25,6 +25,7 @@ class DriveTrain : public frc::Subsystem {
   void InitDefaultCommand() override;
   void resetEncoders();
   void gyroReset();
+  double getAngle();
   double getLeftDistance();
   double getRightDistance();
 };

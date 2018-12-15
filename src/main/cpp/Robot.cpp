@@ -8,6 +8,8 @@
 #include "Robot.h"
 #include <Commands/Scheduler.h>
 #include <SmartDashboard/SmartDashboard.h>
+#include "Commands/AutoMoveForward.h"
+#include "Commands/AutoTurn.h"
 
 ExampleSubsystem Robot::m_subsystem;
 DriveTrain* Robot::m_drive;
@@ -61,7 +63,10 @@ void Robot::AutonomousInit() {
   //   m_autonomousCommand = &m_defaultAuto;
   // }
 
+
+
   m_autonomousCommand = m_chooser.GetSelected();
+  m_autonomousCommand = new AutoTurn(90);
 
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Start();

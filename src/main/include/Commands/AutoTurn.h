@@ -15,7 +15,7 @@ class AutoTurn : public frc::Command {
  private:
 double setpoint;
 double error;
-double angleKp = 0.03;
+double angleKp = 0.015;
 double angleKi = 0;
 double angleKd = 0;
 double power = 0;
